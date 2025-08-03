@@ -1,4 +1,4 @@
-import { create } from "zustand";
+import {create} from "zustand";
 
 declare global {
     interface Window {
@@ -123,7 +123,7 @@ export const usePuterStore = create<PuterStore>((set, get) => {
             return false;
         }
 
-        set({ isLoading: true, error: null });
+        set({isLoading: true, error: null});
 
         try {
             const isSignedIn = await puter.auth.isSignedIn();
@@ -172,7 +172,7 @@ export const usePuterStore = create<PuterStore>((set, get) => {
             return;
         }
 
-        set({ isLoading: true, error: null });
+        set({isLoading: true, error: null});
 
         try {
             await puter.auth.signIn();
@@ -190,7 +190,7 @@ export const usePuterStore = create<PuterStore>((set, get) => {
             return;
         }
 
-        set({ isLoading: true, error: null });
+        set({isLoading: true, error: null});
 
         try {
             await puter.auth.signOut();
@@ -219,7 +219,7 @@ export const usePuterStore = create<PuterStore>((set, get) => {
             return;
         }
 
-        set({ isLoading: true, error: null });
+        set({isLoading: true, error: null});
 
         try {
             const user = await puter.auth.getUser();
@@ -244,7 +244,7 @@ export const usePuterStore = create<PuterStore>((set, get) => {
     const init = (): void => {
         const puter = getPuter();
         if (puter) {
-            set({ puterReady: true });
+            set({puterReady: true});
             checkAuthStatus();
             return;
         }
@@ -252,7 +252,7 @@ export const usePuterStore = create<PuterStore>((set, get) => {
         const interval = setInterval(() => {
             if (getPuter()) {
                 clearInterval(interval);
-                set({ puterReady: true });
+                set({puterReady: true});
                 checkAuthStatus();
             }
         }, 100);
@@ -350,7 +350,7 @@ export const usePuterStore = create<PuterStore>((set, get) => {
                     ],
                 },
             ],
-            { model: "claude-sonnet-4" }
+            {model: "claude-3-7-sonnet"}
         ) as Promise<AIResponse | undefined>;
     };
 
@@ -451,6 +451,6 @@ export const usePuterStore = create<PuterStore>((set, get) => {
             flush: () => flushKV(),
         },
         init,
-        clearError: () => set({ error: null }),
+        clearError: () => set({error: null}),
     };
 });
